@@ -21,6 +21,7 @@ class Employee {
         this.performanceRating = 0.0;
     }
 
+    // using get method
     public String getName() {
         return name;
     }
@@ -85,7 +86,7 @@ public class EmployeeManagementSystemGUI {
         frame.setLayout(new BorderLayout());
         frame.setLocationRelativeTo(null);
 
-        // Header Panel with Company Name
+        // Company Name
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(30, 39, 46));
         JLabel companyLabel = new JLabel("WhimsiCraft Creations", JLabel.CENTER);
@@ -132,7 +133,6 @@ public class EmployeeManagementSystemGUI {
     }
 
     private Object exportEmployeeData() {
-        // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'exportEmployeeData'");
     }
 
@@ -171,14 +171,13 @@ public class EmployeeManagementSystemGUI {
             String name = nameField.getText().trim();
             String salaryStr = salaryField.getText().trim();
 
-            // Validate the Name (only A-Z, a-z, and spaces allowed)
+            // (only A-Z, a-z, and spaces allowed)
             if (name.isEmpty() || !name.matches("[a-zA-Z\\s]+")) {
                 JOptionPane.showMessageDialog(frame, "Name must only contain letters and spaces!", "Error",
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Validate Salary (only digits allowed and should be a valid number)
             double salary = 0.0;
             try {
                 salary = Double.parseDouble(salaryStr);
@@ -196,7 +195,6 @@ public class EmployeeManagementSystemGUI {
             // Automatically generate employee ID
             int employeeId = nextEmployeeId++;
 
-            // Add the employee
             Employee employee = new Employee(name, employeeId, salary);
             employees.add(employee);
             JOptionPane.showMessageDialog(frame, "Employee added successfully!\nEmployee ID: " + employeeId, "Success",
@@ -264,8 +262,7 @@ public class EmployeeManagementSystemGUI {
             JOptionPane.showMessageDialog(frame, "No employees to display!", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
-
-        // Create table model for displaying employees in a table
+        // Table create
         String[] columnNames = { "Employee ID", "Name", "Attended Days", "Performance Rating", "Salary" };
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0);
 
@@ -290,7 +287,7 @@ public class EmployeeManagementSystemGUI {
         JScrollPane scrollPane = new JScrollPane(table);
         scrollPane.setPreferredSize(new Dimension(600, 400));
 
-        // Create an export button
+        // add export button
         JButton exportButton = new JButton("Export Data");
         exportButton.setFont(new Font("Arial", Font.PLAIN, 14));
         exportButton.setBackground(new Color(34, 49, 63));
